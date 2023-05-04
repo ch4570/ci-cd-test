@@ -31,7 +31,7 @@ jobs:
         touch ./application.yml
 
         # Secrets에 저장한 값을 application.yml 파일에 쓰기
-        echo "${{ secrets.application }}" >> ./application.yml
+        echo "${{ secrets.APPLICATION }}" >> ./application.yml
 
       shell: bash
 
