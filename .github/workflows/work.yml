@@ -58,3 +58,4 @@ jobs:
         SLACK_TITLE: Post Title
         SLACK_USERNAME: rtCamp
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+      if: always()
