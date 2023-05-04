@@ -48,12 +48,13 @@ jobs:
           sudo docker run -d -p 80:8080 ${{ secrets.DOCKER_REPO }}
           
           
-    - name: Slack - Send Msg
-      uses: 8398a7/action-slack@v3
-      with:
-        status: ${{ job.status }}
-        fields: workflow,job,commit,repo,author,took,ref
-        author_name: Heeg
+    - name: Slack Notification
+      uses: rtCamp/action-slack-notify@v2
       env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-      if: always()
+        SLACK_CHANNEL: general
+        SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
+        SLACK_ICON: https://github.com/rtCamp.png?size=48
+        SLACK_MESSAGE: 'Post Content :rocket:'
+        SLACK_TITLE: Post Title
+        SLACK_USERNAME: rtCamp
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
