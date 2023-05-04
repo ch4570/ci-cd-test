@@ -46,3 +46,14 @@ jobs:
           sudo docker image rm ${{ secrets.DOCKER_REPO }}
           sudo docker pull ${{ secrets.DOCKER_REPO }}
           sudo docker run -d -p 8080:8080 ${{ secrets.DOCKER_REPO }}
+          
+          
+    - name: 슬랙 알림 발송
+      uses: 8398a7/action-slack@v3
+      with:
+        status: ${{ job.status }}
+        author_name: Github Action Notifiaction Test
+        fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }} # required
+      if: always() # Pick up events even if the job fails or is canceled.
