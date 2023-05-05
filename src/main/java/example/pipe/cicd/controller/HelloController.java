@@ -22,11 +22,7 @@ public class HelloController {
 
     @GetMapping("/test")
     public String port() {
-        StringBuilder sb = new StringBuilder();
-        String container = port == 8081 ? "blue" : "green";
-
-
-       return "blue 가자!";
+       return "green 가자!";
     }
 
 }
