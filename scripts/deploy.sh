@@ -6,6 +6,8 @@ cd /home/ec2-user/app
 
 DOCKER_APP_NAME=spring
 
+echo "DOCKER_APP_NAME = ${DOCKER_APP_NAME}" >> /home/ec2-user/deploy.log
+
 # 실행중인 blue가 있는지 확인
 EXIST_BLUE=$(sudo docker-compose -p ${DOCKER_APP_NAME}-blue -f docker-compose.blue.yml ps | grep running)
 
@@ -13,7 +15,8 @@ echo "실행중인 blue 확인 완료 EXIST_BLUE = ${EXIST_BLUE}" >> /home/ec2-u
 
 # green이 실행중이면 blue up
 if [ -z "$EXIST_BLUE" ]; then
-	echo "blue up - blue 배포 : port:8082" >> /home/ec2-user/deploy.log
+	echo "blue up - blue 배포 : port:8081" >> /home/ec2-user/deploy.log
+	echo "if [-z EXIST_BLUE] 분기 타는 중" >> /home/ec2-user/deploy.log
 	sudo docker-compose -p ${DOCKER_APP_NAME}-blue -f docker-compose.blue.yml up -d --build
 
   sleep 30
