@@ -7,7 +7,7 @@ DOCKER_APP_NAME=spring
 
 # 실행중인 blue가 있는지 확인
 EXIST_BLUE=$(sudo docker-compose -p ${DOCKER_APP_NAME}-blue -f docker-compose.blue.yml ps | grep Up)
-
+ 
 echo "실행중인 blue 확인 완료 EXIST_BLUE = ${EXIST_BLUE}" >> /home/ec2-user/deploy.log
 
 # green이 실행중이면 blue up
