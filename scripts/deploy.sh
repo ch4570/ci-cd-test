@@ -13,13 +13,14 @@ echo "실행중인 blue 확인 완료 EXIST_BLUE = ${EXIST_BLUE}" >> /home/ec2-u
 # green이 실행중이면 blue up
 if [ -z "$EXIST_BLUE" ]; then
 	echo "blue up - blue 배포 : port:8081" >> /home/ec2-user/deploy.log
-	echo "if [-z EXIST_BLUE] 분기 타는 중" >> /home/ec2-user/deploy.log
 	sudo docker-compose -p ${DOCKER_APP_NAME}-blue -f docker-compose.blue.yml up -d --build
 
   sleep 30
 
   sudo docker-compose -p ${DOCKER_APP_NAME}-green -f docker-compose.green.yml down
   sudo docker image prune -af # 사용하지 않는 이미지 삭제
+
+  echo "green 중단 완료" >> /home/ec2-user/deploy.log
 
 # blue가 실행중이면 green up
 else
@@ -30,4 +31,6 @@ else
 
   sudo docker-compose -p ${DOCKER_APP_NAME}-blue -f docker-compose.blue.yml down
   sudo docker image prune -af
+
+  echo "blue 중단 완료" >> /home/ec2-user/deploy.log
 fi
