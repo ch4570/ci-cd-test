@@ -59,7 +59,7 @@ jobs:
           sudo docker run -d -p 8080:8080 ${{ secrets.DOCKER_REPO }}
           
           
-    - name: Slack 알람 발송 
+    - name: Slack 알람 발송
       uses: rtCamp/action-slack-notify@v2
       env:
         SLACK_CHANNEL: general
