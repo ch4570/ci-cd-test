@@ -22,6 +22,17 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
 
+    ## gradle caching
+    - name: Gradle 캐싱
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+                ${{ runner.os }}-gradle-
+
 
     - name: Gradle로 빌드 실행
       run: ./gradlew bootJar
