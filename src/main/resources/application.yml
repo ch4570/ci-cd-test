@@ -1,2 +1,18 @@
+spring:
+  config:
+    activate:
+      on-profile: BLUE
+
 server:
-  port: 8080
+  port: 8888
+
+
+--- # 위 아래를 구분 해주는 구분자
+
+spring:
+  config:
+    activate:
+      on-profile: GREEN
+
+server:
+  port: 7777

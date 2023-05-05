@@ -1,6 +1,5 @@
-### 주석 필요 ###
-
 FROM openjdk:11
-ARG JAR_FILE=build/libs/*.jar
-COPY ${JAR_FILE} example.jar
-ENTRYPOINT ["java", "-jar", "/example.jar"]
+WORKDIR /backend-rex-bucket
+ARG JAR_FILE=*.jar
+COPY ${JAR_FILE} spring.jar
+ENTRYPOINT ["java","-jar","/spring.jar"]
