@@ -26,12 +26,7 @@ public class HelloController {
         String container = port == 8081 ? "blue" : "green";
 
 
-       return sb.append("현재 실행중인 port 번호는 ")
-               .append(port)
-               .append("입니다. 현재 실행중인 container의 이름은 ")
-               .append(container)
-               .append("입니다.")
-               .toString();
+       return "blue 가자!";
     }
 
 }
