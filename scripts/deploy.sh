@@ -13,7 +13,7 @@ echo "실행중인 blue 확인 완료" >> /home/ec2-user/deploy.log
 
 # green이 실행중이면 blue up
 if [ -z "$EXIST_BLUE" ]; then
-	echo "blue up"
+	echo "blue up - blue 배포 : port:8081" >> /home/ec2-user/deploy.log
 	sudo docker-compose -p ${DOCKER_APP_NAME}-blue -f docker-compose.blue.yml up -d --build
 
 	sleep 30
@@ -23,7 +23,7 @@ if [ -z "$EXIST_BLUE" ]; then
 
 # blue가 실행중이면 green up
 else
-	echo "green up"
+	echo "green up - green 배포 : port:8081" >> /home/ec2-user/deploy.log
 	sudo docker-compose -p ${DOCKER_APP_NAME}-green -f docker-compose.green.yml up -d --build
 
 	sleep 30
