@@ -74,7 +74,7 @@ jobs:
 
     # 추가
     - name: Code Deploy 배포 요청
-      run: aws deploy create-deployment --application-name spring-deploy
+      run: aws deploy create-deployment --application-name backend-deploy-group
         --deployment-config-name CodeDeployDefault.OneAtATime
         --deployment-group-name spring-deploy-group
         --s3-location bucket=backend-rex-bucket,bundleType=zip,key=spring-build.zip
