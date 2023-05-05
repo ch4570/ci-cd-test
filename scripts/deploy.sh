@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "실행 중" >> /home/ec2-user/deploy.log
+echo "실행 중" >> /home/ec2-user/deploy.log 
 
 cd /home/ec2-user/app
 
