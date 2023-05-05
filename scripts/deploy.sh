@@ -1,13 +1,13 @@
 #!/bin/bash
 
-echo "실행 중" >> /home/ec2-user/deploy.log 
+echo "실행 중" >> /home/ec2-user/deploy.log
 
 cd /home/ec2-user/app
 
 DOCKER_APP_NAME=spring
 
 # 실행중인 blue가 있는지 확인
-EXIST_BLUE=$(docker-compose -p ${DOCKER_APP_NAME}-blue -f docker-compose.blue.yml ps | grep running)
+EXIST_BLUE=$(sudo docker-compose -p ${DOCKER_APP_NAME}-blue -f docker-compose.blue.yml ps | grep running)
 
 echo "실행중인 blue 확인 완료 EXIST_BLUE = ${EXIST_BLUE}" >> /home/ec2-user/deploy.log
 
