@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "실행 중"
+
 cd /home/ec2-user/app
 
 DOCKER_APP_NAME=spring
