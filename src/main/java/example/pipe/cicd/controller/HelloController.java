@@ -1,11 +1,20 @@
 package example.pipe.cicd.controller;
 
+import example.pipe.cicd.entity.Hello;
+import example.pipe.cicd.service.HelloService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.UUID;
+
 @RestController
+@RequiredArgsConstructor
 public class HelloController {
+
+    private final HelloService helloService;
 
     @Value("${server.port}")
     private Integer port;
@@ -24,5 +33,17 @@ public class HelloController {
     public String port() {
        return "green 가자!";
     }
+
+    @GetMapping("/plus")
+    public Hello plus(){
+        Hello insertHello = helloService.save(Hello.builder().world(UUID.randomUUID().toString()).build());
+        return insertHello;
+    }
+
+    @GetMapping("/read")
+    public List<Hello> read() {
+        return helloService.findAll();
+    }
+
 
 }
