@@ -5,11 +5,11 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@ToString
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "hello")
+@Data
 public class Hello {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)

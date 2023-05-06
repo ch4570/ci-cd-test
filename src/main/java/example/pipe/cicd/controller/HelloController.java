@@ -3,6 +3,7 @@ package example.pipe.cicd.controller;
 import example.pipe.cicd.entity.Hello;
 import example.pipe.cicd.service.HelloService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +13,7 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 public class HelloController {
 
     private final HelloService helloService;
@@ -36,13 +38,14 @@ public class HelloController {
 
     @GetMapping("/plus")
     public Hello plus(){
-        Hello insertHello = helloService.save(Hello.builder().world(UUID.randomUUID().toString()).build());
-        return insertHello;
+        return helloService.save(Hello.builder().world(UUID.randomUUID().toString()).build());
     }
 
     @GetMapping("/read")
     public List<Hello> read() {
-        return helloService.findAll();
+        List<Hello> result = helloService.findAll();
+        log.info("result = {}" ,result);
+        return result;
     }
 
 
